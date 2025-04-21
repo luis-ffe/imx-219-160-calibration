@@ -23,7 +23,7 @@ int main() {
 
     cv::Mat frame;
     while (true) {
-        // Capture frame-by-frame
+        // Capture frame
         if (!cap.read(frame)) {
             std::cerr << "Error: Unable to receive frame. Exiting..." << std::endl;
             break;
@@ -49,8 +49,6 @@ int main() {
             break;
         }
     }
-
-    // Release resources
     cap.release();
     cv::destroyAllWindows();
     return 0;

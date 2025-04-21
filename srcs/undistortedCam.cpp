@@ -26,14 +26,11 @@ int main() {
         "videoconvert ! video/x-raw, format=BGR ! "
         "appsink";
 
-    // Open the camera using the GStreamer pipeline
     VideoCapture cap(pipeline, CAP_GSTREAMER);
     if (!cap.isOpened()) {
         cerr << "Error: Could not open the CSI camera." << endl;
         return -1;
     }
-
-    // Create a window to display the undistorted live feed
     namedWindow("Undistorted Feed", WINDOW_AUTOSIZE);
 
     Mat frame, undistorted;
@@ -53,8 +50,6 @@ int main() {
             break;
         }
     }
-
-    // Clean up resources
     cap.release();
     destroyAllWindows();
     return 0;

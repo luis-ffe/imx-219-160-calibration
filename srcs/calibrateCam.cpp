@@ -27,6 +27,7 @@ int main() {
     vector<vector<Point3f>> objectPoints;
     vector<vector<Point2f>> imagePoints;
 
+    //might want to change the images that are used for calibration here
     // Process images j10.jpg to j22.jpg located in the imgs directory
     vector<string> imageFiles;
     for (int i = 10; i <= 22; i++) {
@@ -58,7 +59,7 @@ int main() {
             // Draw the corners on the image for visual verification
             drawChessboardCorners(image, boardSize, corners, found);
             imshow("Detected Corners", image);
-            // Display the image for 500ms
+            // Display the image for 500ms just to check change this  to 1 or 0 if you just want to  skip
             waitKey(500);
         } else {
             cout << "Chessboard corners not found in " << imageFiles[i] << endl;
@@ -74,7 +75,7 @@ int main() {
     Mat temp = imread(imageFiles[0]);
     Size imageSize = temp.size();
 
-    // Calculate camera matrix and distortion coefficients
+    // Calculate    matrix and distortion coefficients
     Mat cameraMatrix, distCoeffs;
     vector<Mat> rvecs, tvecs;
     double rms = calibrateCamera(objectPoints, imagePoints, imageSize,
@@ -84,7 +85,7 @@ int main() {
     cout << "Camera Matrix:\n" << cameraMatrix << endl;
     cout << "Distortion Coefficients:\n" << distCoeffs << endl;
 
-    // Save the calibration results to a YAML file
+    // Save the calibration
     FileStorage fs("calibration.yml", FileStorage::WRITE);
     fs << "CameraMatrix" << cameraMatrix;
     fs << "DistCoeffs" << distCoeffs;
