@@ -1,0 +1,7 @@
+mkdir build
+cd build
+cmake ..
+make
+pictureTaker      - makes ./pictureTaker that you can use to take pictures pressing space ( built for the jetson nano adapt it to your needss)
+calibrateCam     - run this with the images of the chessboard here to generate the calibration yml file
+undistortedCam    - uses the previous generated yml to make a live view of the camera with no distortion
